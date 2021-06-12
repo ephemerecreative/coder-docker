@@ -8,8 +8,8 @@ RUN apt-get update && apt-get install -y \
 ARG REGION='America'
 ARG CITY='Vancouver'
 
-RUN echo 'tzdata tzdata/Areas select America' | debconf-set-selections && \
-    echo 'tzdata tzdata/Zones/Europe select Vancouver' | debconf-set-selections && \
+RUN echo 'tzdata tzdata/Areas select $REGION' | debconf-set-selections && \
+    echo 'tzdata tzdata/Zones/Europe select $CITY' | debconf-set-selections && \
     DEBIAN_FRONTEND="noninteractive" apt-get install -y tzdata
 
 RUN apt-get install -y systemd
