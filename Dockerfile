@@ -1,0 +1,1 @@
+FROM ephemerecreative/coder-base:latest
