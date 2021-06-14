@@ -1,4 +1,4 @@
-FROM ephemerecreative/coder-base:v0.0.3
+FROM ephemerecreative/coder-base:v0.0.4
 
 USER root
 
@@ -33,5 +33,9 @@ RUN systemctl enable docker
 
 # use systemd as the init
 RUN ln -s /lib/systemd/systemd /sbin/init
+
+RUN usermod -aG docker coder
+
+RUN newgrp docker
 
 USER coder
