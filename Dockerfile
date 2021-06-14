@@ -1,4 +1,4 @@
-FROM ephemerecreative/coder-base:v0.0.4
+FROM ephemerecreative/coder-base:v0.0.5
 
 USER root
 
