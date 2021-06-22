@@ -1,6 +1,9 @@
-FROM ephemerecreative/coder-base:v0.0.5
+FROM ephemerecreative/coder-base:v0.0.7
 
 USER root
+
+RUN mv /coder/configure /coder/coder-base-configure
+COPY scripts/configure /coder/configure
 
 RUN apt-get update && \
     apt-get install -y \
@@ -36,10 +39,12 @@ RUN apt-get install -y systemd
 RUN systemctl enable docker
 
 # use systemd as the init
-RUN ln -s /lib/systemd/systemd /sbin/init
+RUN ln -f -s /lib/systemd/systemd /sbin/init
 
 RUN usermod -aG docker coder
 
 RUN newgrp docker
 
 USER coder
+
+RUN sudo /home/linuxbrew/.linuxbrew/bin/brew install kubectl kustomize tilt-dev/tap/tilt tilt-dev/tap/ctlptl kind
